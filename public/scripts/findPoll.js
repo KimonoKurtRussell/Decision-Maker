@@ -1,7 +1,7 @@
 module.exports = function(knex) {
   function findPollDis(pollURL, cb) {
     knex('option')
-    .select("poll_question", "choice_description", "poll_id_fk")
+    .select("poll_question", "choice_description")
       .join("poll", "poll_id_fk", "=", "poll_id")
       .where("poll_url", pollURL)
       .then(rows =>

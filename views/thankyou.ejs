@@ -1,24 +1,24 @@
-<% include ./partials/_partials.ejs %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Thank you</title>
 
-<link rel="stylesheet" href="/styles/thankyoupage.css" type="text/css"/>
+
+    <link rel="stylesheet" href="test.css" type="text/css" />
+  </head>
 
   <body>
-    <h1>Thank you for creating a poll</h1>
-    <p>You're on your way to making a great decision</p>
-    <div class="nextsteps">
+    <h1>Your Poll</h1>
+
+
 <ul>
-  <li>See your poll <a href='http://localhost:8080/<%=urls["poll_url"]%>'>here</a>, and send to your friends so you can make the best decision!</li>
-  <li>See your results page<a href='http://localhost:8080/<%=urls["admin_url"]%>'>here</a>. It will update with new results as your friends answer the poll</li>
-  <li>See all your polls <a href="http://localhost:8080/admin/polls/all">here</a></li>
-  <li>Email to your friends ... Email address to pull for email... <%=urls["email"]%></li>
-  </ul>
-  <form>
-    <div class="emailsurround">
-   <button type="submit" class="btn btn-primary btn-md">Email to your friends</button>
-</div>
-</form>
-</div>
+  <li>Poll to send to your friends:</li>
+  <li>Results page: <%=rows["poll_url"]%> </li>
+  <li>See all your polls: <%=rows["admin_url"]%></li>
+  <li>Email to your friends: </li>
+
+</ul>
+
 
   </body>
-  <!-- <script type="text/javascript" src="/scripts/nodemailer.js"></script> -->
 </html>

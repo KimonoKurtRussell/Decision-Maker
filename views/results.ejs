@@ -1,87 +1,42 @@
-
 <html lang="en">
- <head>
-   <title>Decision Maker Home Page</title>
-   <link href="https://fonts.googleapis.com/css?family=Rambla:400,700" rel="stylesheet">
-   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-   <link rel="stylesheet" href="/styles/Nav-bar.css" type="text/css" />
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-   <!-- Latest compiled and minified CSS -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <link rel="stylesheet" href="/styles/Nav-bar.css" type="text/css" />
-   <link rel="stylesheet" href="/styles/results.css" type= "text/css"/>
-
-
- </head>
-
- <body class="over">
-   <nav class="navbar navbar-inverse">
- <div class="container-fluid">
-   <div class="navbar-header">
+  <head>
+    <title>Decision Maker Home Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Rambla:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/Nav-bar.css" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/Nav-bar.css" type="text/css" />
 
 
 
-    <a class="brand" href="http://localhost:8080/">Decision Maker</a>
-   </div>
+  </head>
 
- </div>
+  <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     <a class="brand" href="http://localhost:8080/">Decision Maker</a>
+    </div>
+
+  </div>
 </nav>
 
 <div class="container">
-
- <h1>USERNAME QUESTION <%=pollResults["options"][1]%></h1>
- <div>
-   <canvas id="myChart"></canvas>
- </div>
+  <h1>Your Results</h1>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
 </div>
 
 <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
-   <!-- Latest compiled JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <!-- <script type="text/javascript" src="/scripts/poll_display.js"></script> -->
-<script>
-// adding Js to implement a doughnut graph needs to able to take data from database
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
- type: 'doughnut',
- data: {
-   labels: <%- JSON.stringify(pollResults["options"]) %>,
-   datasets: [{
-     backgroundColor: [
-       "#0060B2",
-       "#FF9C00",
-       "#95a5a6",
-       "#9b59b6",
-       "#f1c40f",
-       "#e74c3c",
-       "#34495e"
-     ],
-     data: <%= JSON.stringify(pollResults["scores"]) %>
-   }]
- }
-});
-// pollResults["options"].forEach(function(opt) {
-//   console.log(opt);
-// });
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/poll_display.js"></script>
 
-// console.log(<%pollResults["options"]%>);
-// console.log(<%pollResults["scores"]%>);
-// console.log(<%=pollResults["scores"]%>);
-// console.log(<%=pollResults["scores"]%>);
-
-function addData(chart, label, data) {
-   chart.data.labels.push(label);
-   chart.data.datasets.forEach((dataset) => {
-       dataset.data.push(data);
-   });
-   chart.update();
-}
-addData(myChart, labels, data);
-
-
-</script>
   </body>
 </html>

@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
   function createUserTable() {
     return knex.schema.createTable('users', table => {
       table.increments('id').primary()
-      table.string('email').notNullable().comment('email is a must')
+      table.string('email').unique().notNullable().comment('email is a must')
       table.string('name')
     })
   };

@@ -15,8 +15,6 @@
 // };
 
 
-
-
 module.exports = function(knex) {
   function findPollData(pollURL, cb) {
     knex("option")

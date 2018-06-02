@@ -3,7 +3,7 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["t1","t3","fe"],
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
     datasets: [{
       backgroundColor: [
         "#2ecc71",
@@ -14,9 +14,8 @@ var myChart = new Chart(ctx, {
         "#e74c3c",
         "#34495e"
       ],
-      data: [12, 19, 3]
+      data: [12, 19, 3, 17, 28, 24, 7]
     }]
   }
 });
-
 

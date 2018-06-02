@@ -1,21 +1,7 @@
-$(document).ready(function() {
+$(() => {
 //Jquery to compile options into an object to export to database
 // on submit, grab object, stringify it and set val of hidden field with it
 //adding JQUERY to increase the amount of options a user can have per decision
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 var id = 3;
 var max_fields = 6
@@ -36,17 +22,6 @@ $( "#button" ).click(function() {
  $('.empty').on("click",".remove_field", function(e){
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
-
-
-  // $("#emailButton").on("click", function(e) {
-  //   sendEmail();
-  // });
-
-  // $("#emailButton").on("click", function() {
-  //   alert("clicked the button!");
-  //   // event.preventDefault();
-  //   // sendEmail();
-  // });
 
 // $( window ).load(function() {
 // $("#button").click(function(){

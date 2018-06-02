@@ -46,87 +46,30 @@ const pollData = require("./public/scripts/createPollData")(knex);
 const findPoll = require("./public/scripts/findPoll")(knex);
 const deletePoll = require("./public/scripts/deletePoll")(knex);
 const queryOptions = require("./public/scripts/queryOptions")(knex);
-const findPollConf = require("./public/scripts/findPollConf")(knex);
-
-// var sendEmail = require('gmail-send')({
-// //var send = require('../index.js')({
-//   user: 'manydecisions@gmail.com',
-//   // user: credentials.user,                  // Your GMail account used to send emails
-//   pass: 'hcrp kpco nbyt xphz',
-//   // pass: credentials.pass,                  // Application-specific password
-//   to:   'chandesrochers@gmail.com',
-//   // to:   credentials.user,                  // Send to yourself
-//                                            // you also may set array of recipients:
-//                                            // [ 'user1@gmail.com', 'user2@gmail.com' ]
-//   // from:    credentials.user,            // from: by default equals to user
-//   // replyTo: credentials.user,            // replyTo: by default undefined
-//   // bcc: 'some-user@mail.com',            // almost any option of `nodemailer` will be passed to it
-//   subject: 'test subject',
-//   text:    'gmail-send example 1',         // Plain text
-//   //html:    '<b>html text</b>'            // HTML
-// });
+// const findPollConf = require("./public/scripts/findPollConf")(knex);
 
 
 
 app.get("/", (req, res) => {
   res.render("index");
 });
-// app.get("/poll", (req, res) => {
-//   res.render("poll");
-// });
-
-// GET - confirmation page - displaying the two urls to share with friends - db query for urls
-app.get("/polls/thankyou/:id", (req, res) => {
-  var pollURL = `polls/${req.params.id}`;
-findPollConf.findPollUrls(pollURL, (err, rows) => {
-    if (err) {
-      console.log("error finding poll data");
-      res.status(500).send()
-    }
-    var urls = rows[0];
-    console.log(urls["email"]);
-
- var sendEmail = require('gmail-send')({
-//var send = require('../index.js')({
-  user: 'manydecisions@gmail.com',
-  // user: credentials.user,                  // Your GMail account used to send emails
-  pass: 'hcrp kpco nbyt xphz',
-  // pass: credentials.pass,                  // Application-specific password
-  to:   'urls["email"]',
-  // to:   credentials.user,                  // Send to yourself
-                                      // you also may set array of recipients:
-                                           // [ 'user1@gmail.com', 'user2@gmail.com' ]
-  // from:    credentials.user,            // from: by default equals to user
-  // replyTo: credentials.user,            // replyTo: by default undefined
-  // bcc: 'some-user@mail.com',            // almost any option of `nodemailer` will be passed to it
-  subject: 'Your Poll urls["poll_question"] is ready!',
-  text:    'Thank you for submitting a poll. You can send the following link to your friends: http://localhost:8080/<%=urls["poll_url"]. To view the results of your poll, visit this link: http://localhost:8080/<%=urls["admin_url"]',         // Plain text
-  //html:    '<b>html text</b>'            // HTML
-});
-    // console.log(urls["poll_url"]);
-    // console.log(`successfully found: ${rows}`);
-sendEmail();
-
-
-    res.render("thankyou", {urls});
-
-});
+app.get("/poll", (req, res) => {
+  res.render("poll");
 });
 
-//GET - userPolls - all polls associated with one poll
-app.get("/admin/polls/all", (req, res) => {
-  return res.render("userpolls");
-});
+
+
+
 
 // GET Results page - data query for question, options and score
 app.get("/admin/polls/:id", (req, res) => {
-  var pollURL = `polls/${req.params.id}`;
+  const pollURL = `polls/${req.params.id}`;
   queryOptions.findPollData(pollURL, (err, rows) => {
     if (err) {
       console.log("error finding poll data");
       res.status(500).send()
     }
-    // console.log(rows);
+    console.log(rows);
       var pollResults = {
       pollQuestion: rows[0]["poll_question"],
       options: rows.map(function(e) {
@@ -135,20 +78,15 @@ app.get("/admin/polls/:id", (req, res) => {
       scores: rows.map(function(e) {
         return e["score"];
       })
-    };
+    }
     console.log(pollResults);
-    res.render("results", {pollResults});
   })
+  res.render("results", {pollResults});
 });
-
-
-
-
-
 
 // GET specific poll page - db query for question, options
 app.get("/polls/:id", (req, res) => {
-  var pollURL = `polls/${req.params.id}`;
+  const pollURL = `polls/${req.params.id}`;
   console.log(pollURL);
   findPoll.findPollDis(pollURL, (err, rows) => {
     if (err) {
@@ -158,27 +96,38 @@ app.get("/polls/:id", (req, res) => {
     }
     // console.log(rows);
     // console.log(rows[0]["poll_question"]);
-    var pollData = {
+    const pollData = {
       pollQuestion: rows[0]["poll_question"],
       options: rows.map(function(e) {
         return e["choice_description"];
-      }),
-      pollID: rows[0]["poll_id_fk"]
+      })
     }
     console.log(pollData);
 
-    res.render("poll", {pollData});
+    res.render("polls_show", {pollData});
 
     // res.render("polls_show", {pollQ});
   });
 });
 
-
-
-
-
-
+// //GET - userPolls - all polls associated with one poll
+// app.get("admin/polls/all", (req, res) => {
+//   res.render("userpolls");
 // });
+
+// //GET - confirmation page - displaying the two urls to share with friends - db query for urls
+// app.get("polls/thankyou/:id", req, res) => {
+//   const pollURL = `polls/${req.params.id}`;
+// findPollConf.findPollUrls(pollURL, (err, rows) => {
+//     if (err) {
+//       console.log("error finding poll data");
+//       res.status(500).send()
+//     }
+//     console.log(`successfully found: ${rows}`)
+//   res.render("thankyou", {rows})
+// }
+// });
+
 
 
 
