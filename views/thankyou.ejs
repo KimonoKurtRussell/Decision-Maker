@@ -3,19 +3,22 @@
 <link rel="stylesheet" href="/styles/thankyoupage.css" type="text/css"/>
 
   <body>
-    <h1>Thank you for creating a poll</h1>
-    <p>You're on your way to making a great decision</p>
-    <div class="nextsteps">
+
+
+<div class="nextsteps">
+    <h1>Thank you for creating a poll !</h1>
+    <h2>
+    You're on your way to making a great decision
+    </h2>
+
 <ul>
-  <li>See your poll <a href='http://localhost:8080/<%=urls["poll_url"]%>'>here</a>, and send to your friends so you can make the best decision!</li>
-  <li>See your results page<a href='http://localhost:8080/<%=urls["admin_url"]%>'>here</a>. It will update with new results as your friends answer the poll</li>
-  <li>See all your polls <a href="http://localhost:8080/admin/polls/all">here</a></li>
-  <li>Email to your friends ... Email address to pull for email... <%=urls["email"]%></li>
+  <h3>See your poll <br><a href='http://localhost:8080/<%=urls["poll_url"]%>'>here</a></h3>
+  <h3>See your results page <br><a href='http://localhost:8080/<%=urls["admin_url"]%>'>here</a><br> This poll will update overtime depending on <br> how many people vote</h3>
+
+  <h3>You will recieve an email shortly with links to allow your firends to vote as well as view the results of your poll:<br> <%=urls["email"]%></h3>
   </ul>
   <form>
-    <div class="emailsurround">
-   <button type="submit" class="btn btn-primary btn-md">Email to your friends</button>
-</div>
+
 </form>
 </div>
 

@@ -5,16 +5,23 @@ var nb_items = document.getElementById("tes").innerHTML;
 var nodes = document.getElementById("rails").querySelectorAll(".option");
 
 function createOptions() {
-  let angle = 360 / nb_items;
+  let angle = 215 / nb_items;
   let rot = 0;
   for (let i = 0; i < nb_items; i++) {
     nodes[i].setAttribute('id', 'choice' + (i + 1));
     nodes[i].setAttribute('draggable', "true");
     nodes[i].setAttribute('ondragstart', "drag(event)");
-    nodes[i].style.backgroundColor = "red";
-    nodes[i].style.width = "250px";
-    nodes[i].style.height = "150px";
-    nodes[i].style.transform = "rotate(" + rot + "deg) translate(20em) rotate(" + (-rot) + "deg)";
+    nodes[i].style.cursor = "pointer";
+    nodes[i].style.width = "330px";
+    nodes[i].style.height = "49px";
+    nodes[i].style.textAlign = "center";
+    nodes[i].style.fontSize = "22px";
+    nodes[i].style.marginTop = "10px";
+    // nodes[i].style.marginBottom = "10px";
+    nodes[i].style.paddingTop = "10px";
+    nodes[i].style.paddingLeft = "10px";
+    // nodes[i].style.backgroundColor ="red"
+    nodes[i].style.transform = "rotate(" + rot + "deg) translate(25em) rotate(" + (-rot) + "deg)";
     document.getElementById("rails").appendChild(nodes[i]);
     rot = rot + angle;
   }

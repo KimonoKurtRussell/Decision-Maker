@@ -80,7 +80,7 @@ findPollConf.findPollUrls(pollURL, (err, rows) => {
   // replyTo: credentials.user,            // replyTo: by default undefined
   // bcc: 'some-user@mail.com',            // almost any option of `nodemailer` will be passed to it
   subject: `Your Poll "${urls["poll_question"]}" is ready!`,
-  text:    `Thank you for submitting a poll. You can send the following link to your friends: http://localhost:8080/${urls["poll_url"]}. To view the results of your poll, visit this link: http://localhost:8080/${urls["admin_url"]}`,         // Plain text
+  text:    `Thank you for submitting a poll. You can send the following link to your friends: http://localhost:8080/${urls["poll_url"]} . To view the results of your poll, visit this link: http://localhost:8080/${urls["admin_url"]}`,         // Plain text
   //html:    '<b>html text</b>'            // HTML
 });
     // console.log(urls["poll_url"]);
